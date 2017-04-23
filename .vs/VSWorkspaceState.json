@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Concise.Steps",
+    "\\Concise.Steps\\IoC",
+    "\\Concise.Steps\\Steps",
+    "\\Concise.Steps\\TestFramework"
   ],
-  "SelectedNode": "\\publish.ps1",
+  "SelectedNode": "\\Concise.Steps\\IoC\\ConciseContainer.cs",
   "PreviewInSolutionExplorer": false
 }
