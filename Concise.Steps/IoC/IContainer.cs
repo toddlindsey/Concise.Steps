@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Concise.Steps.IoC
 {
-    public interface IContainer
+    internal interface IContainer
     {
         IServiceProvider Provider { get; }
 
-        void RegisterSingleton<TService, TImplementation>();
+        void RegisterSingleton(Type serviceType, Type implementationType);
 
-        void RegisterTransient<TService, TImplementation>();
+        void RegisterTransient(Type serviceType, Type implementationType);
     }
 }

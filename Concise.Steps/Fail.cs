@@ -23,7 +23,7 @@ namespace Concise.Steps
         {
             Guard.AgainstNullOrEmpty(message, nameof(message));
 
-            ITestFrameworkAdapter adapter = (ITestFrameworkAdapter)Bootstrapper.InternalLocator.GetService(typeof(ITestFrameworkAdapter));
+            ITestFrameworkAdapter adapter = (ITestFrameworkAdapter)Bootstrapper.Locator.GetService(typeof(ITestFrameworkAdapter));
             Exception ex = adapter.CreateAssertionException(message);
             throw ex;
         }
@@ -35,7 +35,7 @@ namespace Concise.Steps
         {
             Guard.AgainstNullOrEmpty(message, nameof(message));
 
-            ITestFrameworkAdapter adapter = (ITestFrameworkAdapter)Bootstrapper.InternalLocator.GetService(typeof(ITestFrameworkAdapter));
+            ITestFrameworkAdapter adapter = (ITestFrameworkAdapter)Bootstrapper.Locator.GetService(typeof(ITestFrameworkAdapter));
             Exception ex = adapter.CreateInconclusiveException(message);
             throw ex;
         }

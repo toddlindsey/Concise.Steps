@@ -28,7 +28,7 @@ namespace Concise.Steps.Execution
         private TestStepContext()
         {
             this.PerformanceFailAction = StepPerformanceFailureAction.FailTest;
-            this.adapter = (ITestFrameworkAdapter)Bootstrapper.InternalLocator.GetService(typeof(ITestFrameworkAdapter));
+            this.adapter = (ITestFrameworkAdapter)Bootstrapper.Locator.GetService(typeof(ITestFrameworkAdapter));
         }
 
         public static TestStepContext CreateNew()

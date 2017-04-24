@@ -10,7 +10,7 @@ namespace Concise.Steps.IoC
     {
         private class Registration
         {
-            public Type InterfaceType;
+            public Type ServiceType;
             public Type ImplementationType;
             public bool IsSingleton;
             public object SingletonInstance;
@@ -24,26 +24,26 @@ namespace Concise.Steps.IoC
             this.resolver = new Resolver(this);
         }
 
-        public void RegisterTransient<TService, TImplementation>()
+        public void RegisterTransient(Type serviceType, Type implementationType)
         {
             var registration = new Registration
             {
-                InterfaceType = typeof(TService),
-                ImplementationType = typeof(TImplementation),
+                ServiceType = serviceType,
+                ImplementationType = implementationType,
                 IsSingleton = false
             };
-            registrations[typeof(TService)] = registration;
+            registrations[serviceType] = registration;
         }
 
-        public void RegisterSingleton<TService, TImplementation>()
+        public void RegisterSingleton(Type serviceType, Type implementationType)
         {
             var registration = new Registration
             {
-                InterfaceType = typeof(TService),
-                ImplementationType = typeof(TImplementation),
+                ServiceType = serviceType,
+                ImplementationType = implementationType,
                 IsSingleton = true
             };
-            registrations[typeof(TService)] = registration;
+            registrations[serviceType] = registration;
         }
 
         private object Resolve(Type serviceType)
@@ -64,16 +64,16 @@ namespace Concise.Steps.IoC
                         if (registration.SingletonInstance != null)
                             return registration.SingletonInstance;
 
-                        registration.SingletonInstance = this.CreateWithInjection(registration.ImplementationType);
+                        registration.SingletonInstance = this.CreateUsingConstructorInjection(registration.ImplementationType);
                         return registration.SingletonInstance;
                     }
                 }
             }
             else
-                return this.CreateWithInjection(registration.ImplementationType);
+                return this.CreateUsingConstructorInjection(registration.ImplementationType);
         }
 
-        private object CreateWithInjection(Type objectType)
+        private object CreateUsingConstructorInjection(Type objectType)
         {
             ConstructorInfo[] constructors = objectType.GetConstructors(BindingFlags.Instance | BindingFlags.Public);
             if (constructors.Length > 0)
