@@ -25,10 +25,7 @@
 
   <ItemGroup>
     <PackageReference Include="MSTest.TestFramework" Version="1.1.17" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Concise.Steps\Concise.Steps.csproj" />
+    <PackageReference Include="System.ComponentModel" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

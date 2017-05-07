@@ -14,14 +14,14 @@ namespace Concise.Steps.MSTest.TestFramework
             return ex is UnitTestAssertException;
         }
 
-        public Exception CreateAssertionException(string message)
+        public Exception CreateAssertionException(string message, Exception ex = null)
         {
-            return new AssertFailedException(message);
+            return new AssertFailedException(message, ex);
         }
 
-        public Exception CreateInconclusiveException(string message)
+        public Exception CreateInconclusiveException(string message, Exception ex = null)
         {
-            return new AssertInconclusiveException(message);
+            return new AssertInconclusiveException(message, ex);
         }
     }
 }

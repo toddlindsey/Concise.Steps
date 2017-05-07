@@ -8,8 +8,8 @@ namespace Concise.Steps.TestFramework
     {
         bool IsAssertionException(Exception ex);
 
-        Exception CreateAssertionException(string message);
+        Exception CreateAssertionException(string message, Exception ex = null);
 
-        Exception CreateInconclusiveException(string message);
+        Exception CreateInconclusiveException(string message, Exception ex = null);
     }
 }

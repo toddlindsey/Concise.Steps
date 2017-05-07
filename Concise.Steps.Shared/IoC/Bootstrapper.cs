@@ -1,11 +1,14 @@
 ﻿using Concise.Steps.TestFramework;
-using Microsoft.Extensions.DependencyModel;
-using Microsoft.Extensions.PlatformAbstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+
+#if NETSTANDARD1_6
+using Microsoft.Extensions.DependencyModel;
+using Microsoft.Extensions.PlatformAbstractions;
+#endif
 
 namespace Concise.Steps.IoC
 {

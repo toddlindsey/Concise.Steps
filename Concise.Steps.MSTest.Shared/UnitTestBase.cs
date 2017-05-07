@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Concise.Steps.UnitTests
+namespace Concise.Steps
 {
     ///// <summary>
     ///// A recommended base class for all MSTest-based unit tests.

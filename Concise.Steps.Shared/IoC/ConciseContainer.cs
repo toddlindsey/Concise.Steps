@@ -76,7 +76,7 @@ namespace Concise.Steps.IoC
         private object CreateUsingConstructorInjection(Type objectType)
         {
             ConstructorInfo[] constructors = objectType.GetConstructors(BindingFlags.Instance | BindingFlags.Public);
-            if (constructors.Length > 0)
+            if (constructors.Length > 1)
                 throw new InvalidOperationException($"Multiple constructors are not supported on type {objectType.FullName}");
             if (constructors.Length == 0)
                 throw new InvalidOperationException($"No public instance constructor exists for type {objectType.FullName}");
