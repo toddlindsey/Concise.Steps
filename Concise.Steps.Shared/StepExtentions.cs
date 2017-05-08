@@ -11,7 +11,7 @@ namespace Concise.Steps
     public static class BddStringExtensions
     {
         private const string NoContextMessage =
-            "Invalid attempt to define a test step without first creating a TestStepContext.";
+            "You defined a test step without any active test context.  Be sure you decorated the test using [StepTest], not [TestMethod]";
 
         /// <summary>
         /// Create a fail-fast step definition, meaning a failure in this step will immediately fail the entire test.

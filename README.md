@@ -2,16 +2,10 @@
 A Non-Opinionated C# Framework for Authoring Self-Describing Tests.
 _great for taming unit, integration, AND long-running mutithreaded e2e tests - come as you are, stay as you please_
 
-#### Dependencies
-_Dependencies automatically installed via NuGet.  The flexibility to use alternate test frameworks and assertion libraries is planned._
-* [MSTest (v2)](https://github.com/microsoft/testfx)
-* [FluentAssertions](https://github.com/fluentassertions/fluentassertions)
-
 #### Quick Start
 
-1. Ensure your class library is setup to run [MSTest (v2)](https://github.com/microsoft/testfx) tests by installing **MSTest.TestAdapter** and **MSTest.TestFramework** packages.
-2. Add **Concise.Steps.MSTest** library using NuGet
-3. Start authoring tests using the **[StepTest]** attribute as shown below:
+1. Add **Concise.Steps.MSTest** library using NuGet (this will add the required [MSTest (v2)](https://github.com/microsoft/testfx) assemblies as needed)
+2. Start authoring tests using the **[StepTest]** attribute as shown below.  _Our examples will use the highly-recommended [FluentAssertions](https://github.com/fluentassertions/fluentassertions) library, but this is not required._
 
 ```C#
         [StepTest]
