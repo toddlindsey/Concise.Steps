@@ -14,7 +14,8 @@ var configuration = Argument("configuration", "Release");
 // PREPARATION
 //////////////////////////////////////////////////////////////////////
 
-var buildDir = Directory("./Artifacts") + Directory(configuration);
+var artifactsDir = "./Artifacts";
+var buildDir = Directory(artifactsDir) + Directory(configuration);
 GitVersion gitVersion = null; 
 DirectoryPath vs2017Path = VSWhereLegacy(new VSWhereLegacySettings { Version = "15.0"}).First();
 
@@ -42,7 +43,6 @@ Task("RestoreNuGet")
     NuGetRestore("./Concise.Steps.sln", new NuGetRestoreSettings 
 	{ 
 		Verbosity = NuGetVerbosity.Detailed
-		//ToolPath = "./build/nuget.exe"
 	});
 });
 
@@ -50,7 +50,6 @@ Task("BuildSolution")
     .Does(() =>
 {
     MSBuild("./Concise.Steps.sln", settings => {
-		// settings.ToolPath = String.IsNullOrEmpty(toolpath) ? settings.ToolPath : toolpath;
 		settings.ToolVersion = MSBuildToolVersion.VS2017;
 		settings.PlatformTarget = PlatformTarget.MSIL;
 		settings.SetConfiguration(configuration);
@@ -72,18 +71,30 @@ Task("Pack")
     .Does(() => 
 {
     NuGetPack("./Concise.Steps.nuspec", new NuGetPackSettings {
-		OutputDirectory = "./Artifacts",
+		OutputDirectory = artifactsDir,
 		Version = gitVersion.NuGetVersionV2
-    });  
+    });
+
+    NuGetPack("./Concise.Steps.MSTest.nuspec", new NuGetPackSettings {
+		OutputDirectory = artifactsDir,
+		Version = gitVersion.NuGetVersionV2,
+		Dependencies = new [] { 
+			new NuSpecDependency { Id = "Concise.Steps", Version = "[" + gitVersion.NuGetVersionV2 + "]" }, // Require exact version match for now
+			new NuSpecDependency { TargetFramework = ".NETStandard1.6", Id = "NETStandard.Library", Version = "[1.6.1, )" },
+			new NuSpecDependency { TargetFramework = ".NETStandard1.6", Id = "System.Reflection.TypeExtensions", Version = "[4.3.0, )" }
+		}
+    });
 });
 
 Task("Push")
     .IsDependentOn("GitVersion")
     .Does(() => 
 {
-	var nupkgPath = "./Artifacts/Concise.Steps." + gitVersion.SemVer + ".nupkg";
+    NuGetPush(artifactsDir + "/Concise.Steps." + gitVersion.SemVer + ".nupkg"), new NuGetPushSettings {
+		Source = "https://www.nuget.org/api/v2/package"
+	});  
 
-    NuGetPush(nupkgPath, new NuGetPushSettings {
+    NuGetPush(artifactsDir + "/Concise.Steps.MSTest." + gitVersion.SemVer + ".nupkg", new NuGetPushSettings {
 		Source = "https://www.nuget.org/api/v2/package"
 	});  
 });
