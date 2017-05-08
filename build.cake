@@ -80,8 +80,8 @@ Task("Pack")
 		Version = gitVersion.NuGetVersionV2,
 		Dependencies = new [] { 
 			new NuSpecDependency { Id = "Concise.Steps", Version = "[" + gitVersion.NuGetVersionV2 + "]" }, // Require exact version match for now
-			new NuSpecDependency { TargetFramework = ".NETStandard1.6", Id = "NETStandard.Library", Version = "[1.6.1, )" },
-			new NuSpecDependency { TargetFramework = ".NETStandard1.6", Id = "System.Reflection.TypeExtensions", Version = "[4.3.0, )" }
+			new NuSpecDependency { TargetFramework = ".NETStandard1.6", Id = "NETStandard.Library", Version = "[1.6.1,)" },
+			new NuSpecDependency { TargetFramework = ".NETStandard1.6", Id = "System.Reflection.TypeExtensions", Version = "[4.3.0,)" }
 		}
     });
 });
@@ -90,7 +90,7 @@ Task("Push")
     .IsDependentOn("GitVersion")
     .Does(() => 
 {
-    NuGetPush(artifactsDir + "/Concise.Steps." + gitVersion.SemVer + ".nupkg"), new NuGetPushSettings {
+    NuGetPush(artifactsDir + "/Concise.Steps." + gitVersion.SemVer + ".nupkg", new NuGetPushSettings {
 		Source = "https://www.nuget.org/api/v2/package"
 	});  
 
