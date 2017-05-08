@@ -1,1 +1,0 @@
-powershell .\publish.ps1

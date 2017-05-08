@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Concise.Steps</id>
+    <title>Concise.Steps</title>
+    <version>0.0.0</version>
+    <owners>Todd Lindsey</owners>
+    <authors>Todd Lindsey</authors>
+    <summary>
+      A simple library for authoring self-describing, or BDD-Style tests
+    </summary>
+    <description>
+      A simple library for authoring self-describing, or BDD-Style tests
+    </description>
+    <language>en-US</language>
+    <licenseUrl>https://github.com/toddlindsey/Concise.Steps/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/toddlindsey/Concise.Steps</projectUrl>
+    <tags>MSTest MSTest2 tests testing bdd self-describing fluent</tags>
+    <copyright>Copyright Todd Lindsey 2017</copyright>
+    <releaseNotes>
+      Alpha pre-release notes
+    </releaseNotes>
+    <!--<frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Xml" targetFramework="net45" />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="net45" />
+    </frameworkAssemblies>-->
+    <dependencies>
+      <group targetFramework=".NETStandard1.6">
+        <dependency id="NETStandard.Library" version="[1.6.1, )" />
+        <dependency id="System.Reflection.TypeExtensions" version="[4.3.0, )" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Concise.Steps.net45\bin\Release\**\*.*" target="lib\net45"/>
+    <file src="Concise.Steps.netstandard16\bin\Release\netstandard1.6\**\*.*" target="lib\netstandard1.6"/>
+  </files>
+</package>

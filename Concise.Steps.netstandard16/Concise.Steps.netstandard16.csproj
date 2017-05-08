@@ -10,24 +10,26 @@
     <PackageReleaseNotes>First release</PackageReleaseNotes>
     <Copyright></Copyright>
     <PackageTags>tests testing bdd self-describing</PackageTags>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Version>0.1.0</Version>
     <PackageProjectUrl>https://github.com/toddlindsey/Concise.Steps</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/toddlindsey/Concise.Steps/blob/master/LICENSE</PackageLicenseUrl>
     <AssemblyName>Concise.Steps</AssemblyName>
-    <RootNamespace>Concise.Steps</RootNamespace>  
+    <RootNamespace>Concise.Steps</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <TreatSpecificWarningsAsErrors />
     <Optimize>False</Optimize>
-    <DocumentationFile>bin\Release\netstandard1.0\Concise.Steps.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <TreatSpecificWarningsAsErrors />
+    <DocumentationFile />
   </PropertyGroup>
 
   <ItemGroup>

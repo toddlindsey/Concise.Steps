@@ -9,6 +9,7 @@
     <Import_RootNamespace>Concise.Steps</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SharedAssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StepTestAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestFramework\MSTestAdapter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTestBase.cs" />

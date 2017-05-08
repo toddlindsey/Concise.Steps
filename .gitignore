@@ -5,6 +5,7 @@ bin
 obj
 packages
 .vs/
+Artifacts/
 
 # Cake related
 Build/**
