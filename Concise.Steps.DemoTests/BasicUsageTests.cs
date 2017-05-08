@@ -18,8 +18,7 @@ namespace Concise.Steps.DemoTests
         public void ObjectUnderTest_Add_GivenTwoNumbers_AddsCorrectly()
         {
             int a = 1, b = 2;
-            $"Given numbers {a} and {b}"
-                ._(() => { });
+            $"Given numbers {a} and {b}"._();
 
             int? result = null;
             "When Add(a,b) is called"
@@ -33,8 +32,7 @@ namespace Concise.Steps.DemoTests
         public void ObjectUnderTest_AddPoorly_GivenTwoNumbers_AddsCorrectly_FAILS()
         {
             int a = 1, b = 2;
-            $"Given numbers {a} and {b}"
-                ._(() => { });
+            $"Given numbers {a} and {b}"._();
 
             int? result = null;
             "When AddPoorly(a,b) is called"
@@ -43,6 +41,5 @@ namespace Concise.Steps.DemoTests
             "Expect 3"
                 ._(() => result.Value.Should().Be(3));
         }
-
     }
 }

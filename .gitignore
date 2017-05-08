@@ -4,3 +4,13 @@ _ReSharper.*
 bin
 obj
 packages
+.vs/
+
+# Cake related
+Build/**
+!Build/packages.config
+Tools/**
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db

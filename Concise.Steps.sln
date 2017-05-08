@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8A6AB9B4-4873-475E-A5F8-341E0DAFDE7C}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		build.cake = build.cake
+		build.cmd = build.cmd
+		build.ps1 = build.ps1
 		LICENSE = LICENSE
 		publish.cmd = publish.cmd
 		publish.ps1 = publish.ps1

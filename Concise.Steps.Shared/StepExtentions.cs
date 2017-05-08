@@ -26,5 +26,14 @@ namespace Concise.Steps
             var step = new TestStep(stepDescription, action, TimeSpan.MaxValue, true);
             TestStepContext.Current.Execute(step);
         }
+
+        /// <summary>
+        /// Create an empty step definition (for test documentation purposes only).
+        /// </summary>
+        /// <param name="stepDescription">The plain-english description of this step</param>
+        public static void _(this string stepDescription)
+        {
+            stepDescription._(() => { });
+        }
     }
 }
