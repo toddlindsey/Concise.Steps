@@ -1,9 +1,13 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Concise.Steps;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using FluentAssertions;
-using Concise.Steps;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Concise.Steps.UnitTests
+namespace UnitTestTest
 {
     [TestClass]
     public class FlatStepTests
@@ -46,4 +50,5 @@ namespace Concise.Steps.UnitTests
         //              .And.Message.Should().Contain("whatever");
         //}
     }
+
 }

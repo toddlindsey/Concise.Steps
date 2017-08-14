@@ -50,12 +50,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Concise.Steps.net45\Concise.Steps.net45.csproj">
-      <Project>{f2d3b8a3-6f2e-4584-8eaa-4ff96684bab4}</Project>
-      <Name>Concise.Steps.net45</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\Concise.Steps.MSTest.Shared\Concise.Steps.MSTest.Shared.projitems" Label="Shared" />

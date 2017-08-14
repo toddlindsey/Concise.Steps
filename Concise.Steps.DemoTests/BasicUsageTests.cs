@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Concise.Steps;
 
 namespace Concise.Steps.DemoTests
 {
@@ -15,7 +16,7 @@ namespace Concise.Steps.DemoTests
         private IObjectUnderTest testObject = new ObjectUnderTest();
 
         [StepTest]
-        public void ObjectUnderTest_Add_GivenTwoNumbers_AddsCorrectly()
+        public void BasicUsage_3FlatSteps()
         {
             int a = 1, b = 2;
             $"Given numbers {a} and {b}"._();
@@ -29,7 +30,7 @@ namespace Concise.Steps.DemoTests
         }
 
         [StepTest]
-        public void ObjectUnderTest_AddPoorly_GivenTwoNumbers_AddsCorrectly_FAILS()
+        public void BasicUsage_3FlatSteps_LastFails()
         {
             int a = 1, b = 2;
             $"Given numbers {a} and {b}"._();
@@ -40,6 +41,30 @@ namespace Concise.Steps.DemoTests
 
             "Expect 3"
                 ._(() => result.Value.Should().Be(3));
+        }
+
+        [StepTest]
+        public void BasicUsage_StepFails_WithInnerException()
+        {
+            "Step that fails with an exception containing an inner exception"._(() =>
+                this.ThrowExceptionWithInner());
+        }
+
+        private void ThrowExceptionWithInner()
+        {
+            try
+            {
+                this.ThrowException();
+            }
+            catch(Exception ex)
+            {
+                throw new NotSupportedException("Message for exception that contains an inner exception", ex);
+            }
+        }
+
+        private void ThrowException()
+        {
+            throw new ArgumentException("Original Exception Message");
         }
     }
 }

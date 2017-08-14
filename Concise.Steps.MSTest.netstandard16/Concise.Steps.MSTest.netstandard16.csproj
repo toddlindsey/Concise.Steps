@@ -13,8 +13,4 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.1.17" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Concise.Steps.netstandard16\Concise.Steps.netstandard16.csproj" />
-  </ItemGroup>
-
 </Project>

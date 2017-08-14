@@ -12,9 +12,24 @@ namespace Concise.Steps
     {
         public StepTestWrapperException(string message, Exception innerException)
             : base(message, innerException)
-        {}
+        { }
 
-        public override string StackTrace => this.InnerException.StackTrace;
+        public override string StackTrace
+        {
+            get
+            {
+                var sb = new StringBuilder();
+
+                sb.Append(this.InnerException.StackTrace);
+                if( this.InnerException.InnerException != null )
+                {
+                    sb.AppendLine();
+                    sb.AppendLine("---------- Inner StackTrace ----------");
+                    sb.AppendLine(this.InnerException.InnerException.StackTrace);
+                }
+                return sb.ToString();
+            }
+        }
     }
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
@@ -35,8 +50,6 @@ namespace Concise.Steps
                     TestStep functionalFailStep = stepContext.FirstFunctionalFailStepOrNull();
                     if (functionalFailStep != null)
                     {
-                        //Exception ex = functionalFailStep.Exception;
-
                         // Provide a "fake" exception so the step output is clearly visible in the primary results window
                         result.TestFailureException = new StepTestWrapperException(stepContext.RenderStepResults(), functionalFailStep.Exception);
                         //result.DebugTrace = functionalFailStep.Exception.StackTrace;

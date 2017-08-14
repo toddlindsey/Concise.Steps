@@ -1,11 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Concise.Steps",
-    "\\Concise.Steps\\IoC",
-    "\\Concise.Steps\\Steps",
-    "\\Concise.Steps\\TestFramework"
+    "\\Concise.Steps.DemoTests",
+    "\\Concise.Steps.DemoTests\\Properties",
+    "\\Concise.Steps.netstandard",
+    "\\Concise.Steps.Shared"
   ],
-  "SelectedNode": "\\Concise.Steps\\IoC\\ConciseContainer.cs",
+  "SelectedNode": "\\Concise.Steps.netstandard\\Concise.Steps.netstandard.csproj",
   "PreviewInSolutionExplorer": false
 }

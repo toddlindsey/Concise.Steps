@@ -239,10 +239,15 @@ namespace Concise.Steps.Execution
                     }
                     else
                     {
-                        if( adapter.IsAssertionException(ex))
+                        if (adapter.IsAssertionException(ex))
                             builder.AppendLine(ex.Message);
                         else
+                        {
                             builder.AppendLine($"{ex.GetType().Name}: {ex.Message}");
+
+                            if( ex.InnerException != null )
+                                builder.AppendLine($"(inner - {ex.InnerException.GetType().Name}: {ex.InnerException.Message})");
+                        }
                     }
 
                     builder.AppendLine();

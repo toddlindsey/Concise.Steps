@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Concise.Steps.MSTest</AssemblyName>
+    <RootNamespace>Concise.Steps.MSTest</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <Import Project="..\Concise.Steps.MSTest.Shared\Concise.Steps.MSTest.Shared.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs" Link="SolutionInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Concise.Steps.netstandard\Concise.Steps.netstandard.csproj" />
+  </ItemGroup>
+
+</Project>
