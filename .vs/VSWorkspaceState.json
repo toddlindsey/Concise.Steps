@@ -3,9 +3,10 @@
     "",
     "\\Concise.Steps.DemoTests",
     "\\Concise.Steps.DemoTests\\Properties",
-    "\\Concise.Steps.netstandard",
-    "\\Concise.Steps.Shared"
+    "\\Concise.Steps.UnitTests.net46",
+    "\\Concise.Steps.UnitTests.netcoreapp2.0",
+    "\\Concise.Steps.UnitTests.Shared"
   ],
-  "SelectedNode": "\\Concise.Steps.netstandard\\Concise.Steps.netstandard.csproj",
+  "SelectedNode": "\\Concise.Steps.UnitTests.netcoreapp2.0\\Concise.Steps.UnitTests.netcoreapp2.0.csproj",
   "PreviewInSolutionExplorer": false
 }

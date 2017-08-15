@@ -53,17 +53,17 @@ Task("CreateSolutionInfo").Does(() => {
 	    InformationalVersion = semVer,
 		Copyright = "Copyright Todd Lindsey 2017"
 	});
+
+	gitVersion = new GitVersion {
+		SemVer = semVer,
+		NuGetVersionV2 = semVer
+	};
 });
 
 Task("GitVersion").Does(() => {
-    //gitVersion = GitVersion(new GitVersionSettings {
-    //    UpdateAssemblyInfo = true
-	//});
-
-	gitVersion = new GitVersion {
-		SemVer = "0.4.0-preview1",
-		NuGetVersionV2 = "0.4.0-preview1"
-	};
+    gitVersion = GitVersion(new GitVersionSettings {
+        UpdateAssemblyInfo = true
+	});
 
     Information("GitResults -> {0}", gitVersion.Dump());
 });
@@ -93,7 +93,7 @@ Task("Tests")
 {
 	FilePath vsTestPath = vsLatestPath.CombineWithFilePath("./Common7/IDE/CommonExtensions/Microsoft/TestWindow/vstest.console.exe");
 
-	VSTest("./*.UnitTests/**/bin/" + configuration + "/*.UnitTests.dll", new VSTestSettings {
+	VSTest("./*.UnitTests.*/**/bin/" + configuration + "/*.UnitTests.*.dll", new VSTestSettings {
 		ToolPath = vsTestPath
 	});
 });
@@ -115,7 +115,6 @@ Task("Pack")
 			new NuSpecDependency { Id = "MSTest.TestFramework", Version = "[1.1.18,)" },
 			new NuSpecDependency { Id = "MSTest.TestAdapter", Version = "[1.1.18,)" },
 			new NuSpecDependency { TargetFramework = ".NETStandard2.0", Id = "NETStandard.Library", Version = "[2.0.0-preview2-25401-01,)" }
-			//new NuSpecDependency { TargetFramework = ".NETStandard1.6", Id = "System.Reflection.TypeExtensions", Version = "[4.3.0,)" }
 		}
     });
 });
@@ -140,8 +139,8 @@ Task("Push")
 
 Task("Default")
     .IsDependentOn("Clean")
-    //.IsDependentOn("GitVersion")
-	.IsDependentOn("CreateSolutionInfo")
+    .IsDependentOn("GitVersion")
+	//.IsDependentOn("CreateSolutionInfo")
     .IsDependentOn("RestoreNuGet")
     .IsDependentOn("BuildSolution")
     .IsDependentOn("Tests")

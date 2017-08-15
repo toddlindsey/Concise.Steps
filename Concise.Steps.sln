@@ -32,12 +32,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concise.Steps.netstandard",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concise.Steps.MSTest.netstandard", "Concise.Steps.MSTest.netstandard\Concise.Steps.MSTest.netstandard.csproj", "{1B931EF3-307C-4B25-8EB6-D8FF1CE0B08F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concise.Steps.UnitTests", "Concise.Steps.UnitTests\Concise.Steps.UnitTests.csproj", "{79091C2D-03A6-4315-BD94-7114E53D407A}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Concise.Steps.UnitTests.Shared", "Concise.Steps.UnitTests.Shared\Concise.Steps.UnitTests.Shared.shproj", "{04893917-846C-451B-821E-D87B76FE9FE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concise.Steps.net46", "Concise.Steps.net46\Concise.Steps.net46.csproj", "{F2D3B8A3-6F2E-4584-8EAA-4FF96684BAB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concise.Steps.MSTest.net46", "Concise.Steps.MSTest.net46\Concise.Steps.MSTest.net46.csproj", "{8FE15098-5A0D-4915-924A-4AEBF9A4ACDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concise.Steps.UnitTests.net46", "Concise.Steps.UnitTests.net46\Concise.Steps.UnitTests.net46.csproj", "{79091C2D-03A6-4315-BD94-7114E53D407A}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Concise.Steps.UnitTests.Shared\Concise.Steps.UnitTests.Shared.projitems*{04893917-846c-451b-821e-d87b76fe9fe4}*SharedItemsImports = 13
+		Concise.Steps.UnitTests.Shared\Concise.Steps.UnitTests.Shared.projitems*{79091c2d-03a6-4315-bd94-7114e53d407a}*SharedItemsImports = 4
+		Concise.Steps.MSTest.Shared\Concise.Steps.MSTest.Shared.projitems*{8fe15098-5a0d-4915-924a-4aebf9a4acda}*SharedItemsImports = 4
 		Concise.Steps.MSTest.Shared\Concise.Steps.MSTest.Shared.projitems*{9d77a209-8312-4d44-8509-06f62dcfcad8}*SharedItemsImports = 13
 		Concise.Steps.Shared\Concise.Steps.Shared.projitems*{d41c88e2-e7ef-467a-afac-278fe7bd545f}*SharedItemsImports = 13
+		Concise.Steps.Shared\Concise.Steps.Shared.projitems*{f2d3b8a3-6f2e-4584-8eaa-4ff96684bab4}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +66,14 @@ Global
 		{1B931EF3-307C-4B25-8EB6-D8FF1CE0B08F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B931EF3-307C-4B25-8EB6-D8FF1CE0B08F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B931EF3-307C-4B25-8EB6-D8FF1CE0B08F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2D3B8A3-6F2E-4584-8EAA-4FF96684BAB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D3B8A3-6F2E-4584-8EAA-4FF96684BAB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D3B8A3-6F2E-4584-8EAA-4FF96684BAB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D3B8A3-6F2E-4584-8EAA-4FF96684BAB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FE15098-5A0D-4915-924A-4AEBF9A4ACDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FE15098-5A0D-4915-924A-4AEBF9A4ACDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FE15098-5A0D-4915-924A-4AEBF9A4ACDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FE15098-5A0D-4915-924A-4AEBF9A4ACDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79091C2D-03A6-4315-BD94-7114E53D407A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79091C2D-03A6-4315-BD94-7114E53D407A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79091C2D-03A6-4315-BD94-7114E53D407A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,6 +88,9 @@ Global
 		{A404A2E4-DEF3-4C33-B040-6B809AEDB58D} = {BACDF195-4ED5-4EB5-BEE6-54C447A3B316}
 		{0A8E0006-55E4-458D-B8DA-632E510F9888} = {3905D200-4A18-4FF0-9F76-0628F3C76DCE}
 		{1B931EF3-307C-4B25-8EB6-D8FF1CE0B08F} = {3905D200-4A18-4FF0-9F76-0628F3C76DCE}
+		{04893917-846C-451B-821E-D87B76FE9FE4} = {22A774A3-AA2C-424D-B04F-DF36E67CF65A}
+		{F2D3B8A3-6F2E-4584-8EAA-4FF96684BAB4} = {3905D200-4A18-4FF0-9F76-0628F3C76DCE}
+		{8FE15098-5A0D-4915-924A-4AEBF9A4ACDA} = {3905D200-4A18-4FF0-9F76-0628F3C76DCE}
 		{79091C2D-03A6-4315-BD94-7114E53D407A} = {22A774A3-AA2C-424D-B04F-DF36E67CF65A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

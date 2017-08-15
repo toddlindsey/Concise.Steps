@@ -18,11 +18,11 @@
     <tags>MSTest MSTest2 tests testing bdd self-describing fluent</tags>
     <copyright>Copyright Todd Lindsey 2017</copyright>
     <releaseNotes>
-      Alpha pre-release notes
     </releaseNotes>
     <!-- **ALL** DEPENDENCIES have to be specified in the CAKE file, since Concise.Steps needs a dynamic version restriction -->
   </metadata>
   <files>
     <file src="Concise.Steps.MSTest.netstandard\bin\Release\netstandard2.0\**\*.*" target="lib\netstandard2.0"/>
+    <file src="Concise.Steps.MSTest.net46\bin\Release\**\*.*" target="lib\net46"/>
   </files>
 </package>
