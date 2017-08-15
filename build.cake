@@ -93,7 +93,7 @@ Task("Tests")
 {
 	FilePath vsTestPath = vsLatestPath.CombineWithFilePath("./Common7/IDE/CommonExtensions/Microsoft/TestWindow/vstest.console.exe");
 
-	VSTest("./*.UnitTests.*/**/bin/" + configuration + "/*.UnitTests.*.dll", new VSTestSettings {
+	VSTest("./*.UnitTests.*/bin/" + configuration + "/*.UnitTests.dll", new VSTestSettings {
 		ToolPath = vsTestPath
 	});
 });
@@ -113,8 +113,8 @@ Task("Pack")
 		Dependencies = new [] { 
 			new NuSpecDependency { Id = "Concise.Steps", Version = "[" + gitVersion.NuGetVersionV2 + "]" }, // Require exact version match for now
 			new NuSpecDependency { Id = "MSTest.TestFramework", Version = "[1.1.18,)" },
-			new NuSpecDependency { Id = "MSTest.TestAdapter", Version = "[1.1.18,)" },
-			new NuSpecDependency { TargetFramework = ".NETStandard2.0", Id = "NETStandard.Library", Version = "[2.0.0-preview2-25401-01,)" }
+			new NuSpecDependency { Id = "MSTest.TestAdapter", Version = "[1.1.18,)" }
+			// new NuSpecDependency { TargetFramework = ".NETStandard2.0", Id = "NETStandard.Library", Version = "[2.0.0-preview2-25401-01,)" }
 		}
     });
 });
