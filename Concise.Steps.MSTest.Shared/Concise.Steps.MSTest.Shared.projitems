@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)SharedAssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StepTestAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StepTestWrapperException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestFramework\MSTestAdapter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnitTestBase.cs" />
   </ItemGroup>

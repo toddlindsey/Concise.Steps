@@ -242,12 +242,7 @@ namespace Concise.Steps.Execution
                         if (adapter.IsAssertionException(ex))
                             builder.AppendLine(ex.Message);
                         else
-                        {
-                            builder.AppendLine($"{ex.GetType().Name}: {ex.Message}");
-
-                            if( ex.InnerException != null )
-                                builder.AppendLine($"(inner - {ex.InnerException.GetType().Name}: {ex.InnerException.Message})");
-                        }
+                            builder.Append(this.RenderExceptionMessagesRecursive(ex));
                     }
 
                     builder.AppendLine();
@@ -256,6 +251,25 @@ namespace Concise.Steps.Execution
                 if (step.Children.Any())
                     this.RenderStepResultsAtLevel(builder, step.Children, level + 1, renderCallstacks);
             }
+        }
+
+        /// <summary>
+        /// Render the exception type and message, and recursively for inner exceptions
+        /// </summary>
+        private string RenderExceptionMessagesRecursive(Exception exception, int level = 1)
+        {
+            var builder = new StringBuilder();
+
+            string innerPrefix = "";
+            if (level > 1)
+                innerPrefix = $"Inner{(level == 2 ? "" : $"x{level - 1}")}: ";
+
+            builder.AppendLine($"{innerPrefix}{exception.GetType().Name}: {exception.Message}");
+
+            if (exception.InnerException != null)
+                builder.Append(this.RenderExceptionMessagesRecursive(exception.InnerException, level + 1));
+
+            return builder.ToString();
         }
 
         /// <summary>

@@ -46,8 +46,20 @@ namespace Concise.Steps.DemoTests
         [StepTest]
         public void BasicUsage_StepFails_WithInnerException()
         {
-            "Step that fails with an exception containing an inner exception"._(() =>
-                this.ThrowExceptionWithInner());
+            "Step that fails with an exception containing a chain of inner exceptions"._(() =>
+                this.ThrowExceptionWithInners());
+        }
+
+        private void ThrowExceptionWithInners()
+        {
+            try
+            {
+                this.ThrowExceptionWithInner();
+            }
+            catch(Exception ex)
+            {
+                throw new NotSupportedException("Message for exception that contains an inner exception", ex);
+            }
         }
 
         private void ThrowExceptionWithInner()
@@ -56,15 +68,15 @@ namespace Concise.Steps.DemoTests
             {
                 this.ThrowException();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new NotSupportedException("Message for exception that contains an inner exception", ex);
+                throw new ArgumentException("My Argument Exception", ex);
             }
         }
 
         private void ThrowException()
         {
-            throw new ArgumentException("Original Exception Message");
+            throw new ApplicationException("My App Exception");
         }
     }
 }

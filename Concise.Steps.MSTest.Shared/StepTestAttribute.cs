@@ -8,32 +8,9 @@ using System.Text;
 
 namespace Concise.Steps
 {
-    public class StepTestWrapperException : Exception
-    {
-        public StepTestWrapperException(string message, Exception innerException)
-            : base(message, innerException)
-        { }
 
-        public override string StackTrace
-        {
-            get
-            {
-                var sb = new StringBuilder();
-
-                sb.Append(this.InnerException.StackTrace);
-                if( this.InnerException.InnerException != null )
-                {
-                    sb.AppendLine();
-                    sb.AppendLine("---------- Inner StackTrace ----------");
-                    sb.AppendLine(this.InnerException.InnerException.StackTrace);
-                }
-                return sb.ToString();
-            }
-        }
-    }
 
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    //[DebuggerStepThrough]
     public class StepTestAttribute : TestMethodAttribute
     {
         public override TestResult[] Execute(ITestMethod testMethod)
