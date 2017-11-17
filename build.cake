@@ -11,6 +11,7 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
+var apiKey = Argument<string>("apiKey", null);
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -124,11 +125,13 @@ Task("Push")
     .Does(() => 
 {
     NuGetPush(artifactsDir + "/Concise.Steps." + gitVersion.SemVer + ".nupkg", new NuGetPushSettings {
-		Source = "https://www.nuget.org/api/v2/package"
+		Source = "https://www.nuget.org/api/v2/package",
+		ApiKey = apiKey
 	});  
 
     NuGetPush(artifactsDir + "/Concise.Steps.MSTest." + gitVersion.SemVer + ".nupkg", new NuGetPushSettings {
-		Source = "https://www.nuget.org/api/v2/package"
+		Source = "https://www.nuget.org/api/v2/package",
+		ApiKey = apiKey
 	});  
 });
 
