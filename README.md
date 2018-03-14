@@ -9,8 +9,9 @@ _Great for taming unit, integration, AND long-running mutithreaded e2e tests_
 
 #### Quick Start
 
-1. Add **Concise.Steps.MSTest** library using NuGet (this will add the required [MSTest (v2)](https://github.com/microsoft/testfx) assemblies as needed)
+1. Add **Concise.Steps.MSTest** library using NuGet
 2. Start authoring tests using the **[StepTest]** attribute as shown below.  _Our examples will use the highly-recommended [FluentAssertions](https://github.com/fluentassertions/fluentassertions) library, but this is not required._
+3. Nested steps (to any level) are also supported!  This is particularly helpful in taming more complex E2E tests.
 
 ```C#
         [StepTest]
