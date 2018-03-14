@@ -30,7 +30,13 @@ FilePath msBuildPathX64 = (vsLatestPath==null)
 
 Information("MSBuild Path: " + msBuildPathX64);
 
-//DirectoryPath vs2017Path = VSWhereLegacy(new VSWhereLegacySettings { Version = "15.0"}).First();
+string semVer = "0.4.2-preview";
+string netVer = "0.4.2.0";
+
+gitVersion = new GitVersion {
+	SemVer = semVer,
+	NuGetVersionV2 = semVer
+};
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -42,31 +48,32 @@ Task("Clean")
     CleanDirectory(buildDir);
 });
 
-Task("CreateSolutionInfo").Does(() => {
+Task("GitVersion").Does(() => {
 
-	string semVer = "0.4.0-preview1";
-	string netVer = "0.4.0.0";
+	// Hardcoded version
+	//gitVersion = new GitVersion {
+	//	SemVer = "0.4.1-preview",
+	//	NuGetVersionV2 = semVer
+	//};
+
+	// Use this to determine version from the Git label
+    gitVersion = GitVersion(new GitVersionSettings {
+	   UpdateAssemblyInfo = true
+	});
+
+    Information("GitResults -> {0}", gitVersion.Dump());
+});
+
+Task("CreateSolutionInfo").Does(() => {
 
 	CreateAssemblyInfo("./SolutionInfo.cs", new AssemblyInfoSettings {
 		Product = "Concise.Steps",
 		Version = netVer,
 		FileVersion = netVer,
 	    InformationalVersion = semVer,
-		Copyright = "Copyright Todd Lindsey 2017"
+		Copyright = "Copyright Todd Lindsey 2018"
 	});
 
-	gitVersion = new GitVersion {
-		SemVer = semVer,
-		NuGetVersionV2 = semVer
-	};
-});
-
-Task("GitVersion").Does(() => {
-    gitVersion = GitVersion(new GitVersionSettings {
-        UpdateAssemblyInfo = true
-	});
-
-    Information("GitResults -> {0}", gitVersion.Dump());
 });
 
 Task("RestoreNuGet")
@@ -100,7 +107,6 @@ Task("Tests")
 });
 
 Task("Pack")
-    .IsDependentOn("GitVersion")
     .Does(() => 
 {
     NuGetPack("./Concise.Steps.nuspec", new NuGetPackSettings {
@@ -112,16 +118,14 @@ Task("Pack")
 		OutputDirectory = artifactsDir,
 		Version = gitVersion.NuGetVersionV2,
 		Dependencies = new [] { 
-			new NuSpecDependency { Id = "Concise.Steps", Version = "[" + gitVersion.NuGetVersionV2 + "]" }, // Require exact version match for now
-			new NuSpecDependency { Id = "MSTest.TestFramework", Version = "[1.1.18,)" },
-			new NuSpecDependency { Id = "MSTest.TestAdapter", Version = "[1.1.18,)" }
-			// new NuSpecDependency { TargetFramework = ".NETStandard2.0", Id = "NETStandard.Library", Version = "[2.0.0-preview2-25401-01,)" }
+			new NuSpecDependency { Id = "Concise.Steps", TargetFramework = "netstandard2.0", Version = "[" + gitVersion.NuGetVersionV2 + "]" }, // Require exact version match for now
+			new NuSpecDependency { Id = "MSTest.TestFramework", TargetFramework = "netstandard2.0", Version = "[1.1.18,)" },
+			new NuSpecDependency { Id = "MSTest.TestAdapter", TargetFramework = "netstandard2.0", Version = "[1.1.18,)" }
 		}
     });
 });
 
 Task("Push")
-    .IsDependentOn("GitVersion")
     .Does(() => 
 {
     NuGetPush(artifactsDir + "/Concise.Steps." + gitVersion.SemVer + ".nupkg", new NuGetPushSettings {
@@ -142,8 +146,8 @@ Task("Push")
 
 Task("Default")
     .IsDependentOn("Clean")
-    .IsDependentOn("GitVersion")
-	//.IsDependentOn("CreateSolutionInfo")
+    //.IsDependentOn("GitVersion")
+	.IsDependentOn("CreateSolutionInfo")
     .IsDependentOn("RestoreNuGet")
     .IsDependentOn("BuildSolution")
     .IsDependentOn("Tests")

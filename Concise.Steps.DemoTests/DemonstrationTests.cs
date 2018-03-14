@@ -11,12 +11,12 @@ using Concise.Steps;
 namespace Concise.Steps.DemoTests
 {
     [TestClass]
-    public class BasicUsageTests
+    public class DemonstrationTests
     {
         private IObjectUnderTest testObject = new ObjectUnderTest();
 
         [StepTest]
-        public void BasicUsage_3FlatSteps()
+        public void Demo_3FlatSteps()
         {
             int a = 1, b = 2;
             $"Given numbers {a} and {b}"._();
@@ -30,7 +30,7 @@ namespace Concise.Steps.DemoTests
         }
 
         [StepTest]
-        public void BasicUsage_3FlatSteps_LastFails()
+        public void Demo__FAILURE_EXPECTED__3FlatSteps_LastFails()
         {
             int a = 1, b = 2;
             $"Given numbers {a} and {b}"._();
@@ -44,12 +44,12 @@ namespace Concise.Steps.DemoTests
         }
 
         [StepTest]
-        public void BasicUsage_StepFails_WithInnerException()
+        public void Demo__FAILURE_EXPECTED__StepFails_WithInnerException()
         {
             "Step that fails with an exception containing a chain of inner exceptions"._(() =>
                 this.ThrowExceptionWithInners());
         }
-
+        
         private void ThrowExceptionWithInners()
         {
             try

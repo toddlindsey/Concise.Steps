@@ -1,6 +1,11 @@
 # Concise.Steps
-A Non-Opinionated C# Framework for Authoring Self-Describing Tests.
-_great for taming unit, integration, AND long-running mutithreaded e2e tests - come as you are, stay as you please_
+A simple, non-opinionated C# Framework for authoring Self-Describing Tests.
+_Great for taming unit, integration, AND long-running mutithreaded e2e tests_
+
+#### Dependencies
+
+* Currently supports [MSTest (v2)](https://github.com/microsoft/testfx); feel free to submit a pull request for other frameworks.
+* Supports .NET Frameworks compatible with [.NET Standard 2.0](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 
 #### Quick Start
 
@@ -22,3 +27,13 @@ _great for taming unit, integration, AND long-running mutithreaded e2e tests - c
                 ._(() => result.Value.Should().Be(3));
         }
 ```
+
+#### Visual Studio Experience
+
+##### Passed Test
+
+![](images/passedTest.png?raw=true)
+
+##### Failed Test
+
+![](images/failedTest.png?raw=true)

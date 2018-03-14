@@ -1,12 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Concise.Steps.DemoTests",
     "\\Concise.Steps.DemoTests\\Properties",
-    "\\Concise.Steps.UnitTests.net46",
-    "\\Concise.Steps.UnitTests.netcoreapp2.0",
+    "\\Concise.Steps.DemoTests\\TestSubject",
+    "\\Concise.Steps.MSTest.UnitTests.Shared",
     "\\Concise.Steps.UnitTests.Shared"
   ],
-  "SelectedNode": "\\Concise.Steps.UnitTests.netcoreapp2.0\\Concise.Steps.UnitTests.netcoreapp2.0.csproj",
+  "SelectedNode": "\\Concise.Steps.MSTest.UnitTests.Shared\\StepTestWrapperExceptionTests.cs",
   "PreviewInSolutionExplorer": false
 }

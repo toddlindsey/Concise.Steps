@@ -10,7 +10,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BasicStepTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TestAttributeTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UnitTestBase.cs" />
   </ItemGroup>
 </Project>
