@@ -16,10 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		SolutionInfo.cs = SolutionInfo.cs
 	EndProjectSection
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Concise.Steps.Shared", "Concise.Steps.Shared\Concise.Steps.Shared.shproj", "{D41C88E2-E7EF-467A-AFAC-278FE7BD545F}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Concise.Steps.MSTest.Shared", "Concise.Steps.MSTest.Shared\Concise.Steps.MSTest.Shared.shproj", "{9D77A209-8312-4D44-8509-06F62DCFCAD8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concise.Steps.DemoTests", "Concise.Steps.DemoTests\Concise.Steps.DemoTests.csproj", "{A404A2E4-DEF3-4C33-B040-6B809AEDB58D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main", "Main", "{3905D200-4A18-4FF0-9F76-0628F3C76DCE}"
@@ -32,22 +28,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concise.Steps.netstandard",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concise.Steps.MSTest.netstandard", "Concise.Steps.MSTest.netstandard\Concise.Steps.MSTest.netstandard.csproj", "{1B931EF3-307C-4B25-8EB6-D8FF1CE0B08F}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Concise.Steps.UnitTests.Shared", "Concise.Steps.UnitTests.Shared\Concise.Steps.UnitTests.Shared.shproj", "{04893917-846C-451B-821E-D87B76FE9FE4}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Concise.Steps.MSTest.UnitTests.shared", "Concise.Steps.MSTest.UnitTests.shared\Concise.Steps.MSTest.UnitTests.shared.shproj", "{D7E1EA3A-D46F-47D2-8BF9-2D0F77971B93}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Concise.Steps.MSTest.UnitTests.Shared", "Concise.Steps.MSTest.UnitTests.Shared\Concise.Steps.MSTest.UnitTests.Shared.shproj", "{9305B123-6500-4FCC-B0F1-85EE9909E25E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concise.Steps.MSTest.UnitTests.netcore", "Concise.Steps.MSTest.UnitTests.netcore\Concise.Steps.MSTest.UnitTests.netcore.csproj", "{1F289EB0-F248-4CD4-89FD-CD1D38BAAC88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concise.Steps.UnitTests.net46", "Concise.Steps.UnitTests.net46\Concise.Steps.UnitTests.net46.csproj", "{79091C2D-03A6-4315-BD94-7114E53D407A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concise.Steps.MSTest.UnitTests.net46", "Concise.Steps.MSTest.UnitTests.net46\Concise.Steps.MSTest.UnitTests.net46.csproj", "{B5EFC3C3-AA01-416A-A648-4B7C6731297A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concise.Steps.MSTest.UnitTests.net461", "Concise.Steps.MSTest.UnitTests.net461\Concise.Steps.MSTest.UnitTests.net461.csproj", "{B5EFC3C3-AA01-416A-A648-4B7C6731297A}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Concise.Steps.UnitTests.Shared\Concise.Steps.UnitTests.Shared.projitems*{04893917-846c-451b-821e-d87b76fe9fe4}*SharedItemsImports = 13
-		Concise.Steps.UnitTests.Shared\Concise.Steps.UnitTests.Shared.projitems*{79091c2d-03a6-4315-bd94-7114e53d407a}*SharedItemsImports = 4
-		Concise.Steps.MSTest.UnitTests.Shared\Concise.Steps.MSTest.UnitTests.Shared.projitems*{9305b123-6500-4fcc-b0f1-85ee9909e25e}*SharedItemsImports = 13
-		Concise.Steps.MSTest.Shared\Concise.Steps.MSTest.Shared.projitems*{9d77a209-8312-4d44-8509-06f62dcfcad8}*SharedItemsImports = 13
-		Concise.Steps.MSTest.UnitTests.Shared\Concise.Steps.MSTest.UnitTests.Shared.projitems*{b5efc3c3-aa01-416a-a648-4b7c6731297a}*SharedItemsImports = 4
-		Concise.Steps.Shared\Concise.Steps.Shared.projitems*{d41c88e2-e7ef-467a-afac-278fe7bd545f}*SharedItemsImports = 13
+		Concise.Steps.MSTest.UnitTests.shared\Concise.Steps.MSTest.UnitTests.shared.projitems*{b5efc3c3-aa01-416a-a648-4b7c6731297a}*SharedItemsImports = 4
+		Concise.Steps.MSTest.UnitTests.shared\Concise.Steps.MSTest.UnitTests.shared.projitems*{d7e1ea3a-d46f-47d2-8bf9-2d0f77971b93}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,10 +56,10 @@ Global
 		{1B931EF3-307C-4B25-8EB6-D8FF1CE0B08F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B931EF3-307C-4B25-8EB6-D8FF1CE0B08F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B931EF3-307C-4B25-8EB6-D8FF1CE0B08F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79091C2D-03A6-4315-BD94-7114E53D407A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79091C2D-03A6-4315-BD94-7114E53D407A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79091C2D-03A6-4315-BD94-7114E53D407A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79091C2D-03A6-4315-BD94-7114E53D407A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F289EB0-F248-4CD4-89FD-CD1D38BAAC88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F289EB0-F248-4CD4-89FD-CD1D38BAAC88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F289EB0-F248-4CD4-89FD-CD1D38BAAC88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F289EB0-F248-4CD4-89FD-CD1D38BAAC88}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5EFC3C3-AA01-416A-A648-4B7C6731297A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5EFC3C3-AA01-416A-A648-4B7C6731297A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5EFC3C3-AA01-416A-A648-4B7C6731297A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -79,14 +69,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D41C88E2-E7EF-467A-AFAC-278FE7BD545F} = {3905D200-4A18-4FF0-9F76-0628F3C76DCE}
-		{9D77A209-8312-4D44-8509-06F62DCFCAD8} = {3905D200-4A18-4FF0-9F76-0628F3C76DCE}
 		{A404A2E4-DEF3-4C33-B040-6B809AEDB58D} = {BACDF195-4ED5-4EB5-BEE6-54C447A3B316}
 		{0A8E0006-55E4-458D-B8DA-632E510F9888} = {3905D200-4A18-4FF0-9F76-0628F3C76DCE}
 		{1B931EF3-307C-4B25-8EB6-D8FF1CE0B08F} = {3905D200-4A18-4FF0-9F76-0628F3C76DCE}
-		{04893917-846C-451B-821E-D87B76FE9FE4} = {22A774A3-AA2C-424D-B04F-DF36E67CF65A}
-		{9305B123-6500-4FCC-B0F1-85EE9909E25E} = {22A774A3-AA2C-424D-B04F-DF36E67CF65A}
-		{79091C2D-03A6-4315-BD94-7114E53D407A} = {22A774A3-AA2C-424D-B04F-DF36E67CF65A}
+		{D7E1EA3A-D46F-47D2-8BF9-2D0F77971B93} = {22A774A3-AA2C-424D-B04F-DF36E67CF65A}
+		{1F289EB0-F248-4CD4-89FD-CD1D38BAAC88} = {22A774A3-AA2C-424D-B04F-DF36E67CF65A}
 		{B5EFC3C3-AA01-416A-A648-4B7C6731297A} = {22A774A3-AA2C-424D-B04F-DF36E67CF65A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

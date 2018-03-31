@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <RootNamespace>Concise.Steps.MSTest.UnitTests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.2" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Concise.Steps.MSTest.netstandard\Concise.Steps.MSTest.netstandard.csproj" />
+    <ProjectReference Include="..\Concise.Steps.netstandard\Concise.Steps.netstandard.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\Concise.Steps.MSTest.UnitTests.shared\Concise.Steps.MSTest.UnitTests.shared.projitems" Label="Shared" />
+
+</Project>

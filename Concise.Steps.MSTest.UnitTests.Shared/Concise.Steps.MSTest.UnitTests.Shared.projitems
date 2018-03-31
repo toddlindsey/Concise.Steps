@@ -3,12 +3,13 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>9305b123-6500-4fcc-b0f1-85ee9909e25e</SharedGUID>
+    <SharedGUID>d7e1ea3a-d46f-47d2-8bf9-2d0f77971b93</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Concise.Steps.MSTest.UnitTests.Shared</Import_RootNamespace>
+    <Import_RootNamespace>Concise.Steps.MSTest.UnitTests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BasicStepTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StepTestWrapperExceptionTests.cs" />
   </ItemGroup>
 </Project>

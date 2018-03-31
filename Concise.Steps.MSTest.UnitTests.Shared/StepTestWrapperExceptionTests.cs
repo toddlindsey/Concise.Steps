@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using FluentAssertions;
 
-namespace Concise.Steps.MSTest.UnitTests.Shared
+namespace Concise.Steps.MSTest.UnitTests
 {
     [TestClass]
     public class StepTestWrapperExceptionTests

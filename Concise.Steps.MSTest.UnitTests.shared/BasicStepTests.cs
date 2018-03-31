@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Concise.Steps;
 
-namespace Concise.Steps.UnitTests
+namespace Concise.Steps.MSTest.UnitTests
 {
     [TestClass]
     public class BasicStepTests
@@ -24,7 +24,7 @@ namespace Concise.Steps.UnitTests
                 "Step that fails"._(() => throw new Exception("My Exception"));
             };
 
-            step.ShouldThrow<Exception>()
+            step.Should().Throw<Exception>()
                 .And.Message.Should().Be("My Exception");
         }
     }
