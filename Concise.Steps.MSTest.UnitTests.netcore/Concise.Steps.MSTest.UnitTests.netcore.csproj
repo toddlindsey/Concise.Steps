@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Concise.Steps.MSTest.netstandard\Concise.Steps.MSTest.netstandard.csproj" />
-    <ProjectReference Include="..\Concise.Steps.netstandard\Concise.Steps.netstandard.csproj" />
+    <ProjectReference Include="..\Concise.Steps.MSTest\Concise.Steps.MSTest.csproj" />
+    <ProjectReference Include="..\Concise.Steps\Concise.Steps.csproj" />
   </ItemGroup>
 
   <Import Project="..\Concise.Steps.MSTest.UnitTests.shared\Concise.Steps.MSTest.UnitTests.shared.projitems" Label="Shared" />

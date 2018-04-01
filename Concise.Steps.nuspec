@@ -24,6 +24,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="Concise.Steps.netstandard\bin\Release\netstandard2.0\**\*.*" target="lib\netstandard2.0" exclude="**\Microsoft*.dll"/>
+    <file src="Concise.Steps\bin\Release\netstandard2.0\**\*.*" target="lib\netstandard2.0" exclude="**\Microsoft*.dll"/>
   </files>
 </package>

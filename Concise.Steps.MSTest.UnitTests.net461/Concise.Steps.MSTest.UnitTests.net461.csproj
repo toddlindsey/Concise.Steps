@@ -66,13 +66,13 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Concise.Steps.MSTest.netstandard\Concise.Steps.MSTest.netstandard.csproj">
-      <Project>{1b931ef3-307c-4b25-8eb6-d8ff1ce0b08f}</Project>
-      <Name>Concise.Steps.MSTest.netstandard</Name>
+    <ProjectReference Include="..\Concise.Steps.MSTest\Concise.Steps.MSTest.csproj">
+      <Project>{8fa0203f-007f-4c2c-9477-1211268ce1fb}</Project>
+      <Name>Concise.Steps.MSTest</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Concise.Steps.netstandard\Concise.Steps.netstandard.csproj">
-      <Project>{0a8e0006-55e4-458d-b8da-632e510f9888}</Project>
-      <Name>Concise.Steps.netstandard</Name>
+    <ProjectReference Include="..\Concise.Steps\Concise.Steps.csproj">
+      <Project>{db5354e5-390b-4070-8509-55be271b6459}</Project>
+      <Name>Concise.Steps</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\Concise.Steps.MSTest.UnitTests.shared\Concise.Steps.MSTest.UnitTests.shared.projitems" Label="Shared" />
