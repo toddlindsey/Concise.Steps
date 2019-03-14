@@ -4,3 +4,4 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 [assembly:InternalsVisibleTo("Concise.Steps.MSTest")]
+[assembly:InternalsVisibleTo("Concise.Steps.NUnit")]

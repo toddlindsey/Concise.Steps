@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Concise.Steps</id>
-    <title>Concise.Steps</title>
+    <id>Concise.Steps.NUnit</id>
+    <title>Concise.Steps.NUnit</title>
     <version>0.0.0</version>
     <owners>Todd Lindsey</owners>
     <authors>Todd Lindsey</authors>
@@ -15,15 +15,13 @@
     <language>en-US</language>
     <license type="expression">Apache-2.0</license>
     <projectUrl>https://github.com/toddlindsey/Concise.Steps</projectUrl>
-    <tags>tests testing bdd self-describing fluent</tags>
+    <tags>NUnit tests testing bdd self-describing fluent</tags>
     <copyright>Copyright Todd Lindsey 2019</copyright>
     <releaseNotes>
-    </releaseNotes>
-    <dependencies>
-      <group targetFramework="netstandard2.0"></group>
-    </dependencies>
+    </releaseNotes>    
+    <!-- **ALL** DEPENDENCIES have to be specified in the CAKE file, since Concise.Steps needs a dynamic version restriction -->
   </metadata>
   <files>
-    <file src="Concise.Steps\bin\Release\netstandard2.0\**\*.*" target="lib\netstandard2.0" exclude="**\Microsoft*.dll"/>
+    <file src="Concise.Steps.NUnit\bin\Release\netstandard2.0\**\*.*" target="lib\netstandard2.0"/>
   </files>
 </package>

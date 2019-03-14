@@ -30,23 +30,22 @@ namespace Concise.Steps.IoC
         {
             // Find and register the loaded ITestFrameworkAdapter by looking through assemblies that directly reference this one
             {
-                // .NET Standard 1.6 will allow us to find and load the right assembly.  For now we have to use .NET Standard 1.5
-#if NETSTANDARD1_6
                 string currentAssemblyFullName = typeof(Bootstrapper).GetTypeInfo().Assembly.FullName;
 
                 // Libraries directly referencing this one
-                IList<RuntimeLibrary> referencingLibraries = DependencyContext.Default.RuntimeLibraries
-                    .Where(x => x.Name != currentAssemblyFullName && x.Dependencies.Any(y => y.Name == currentAssemblyFullName))
+                IList<Assembly> assembliesReferencingThisAssembly = AppDomain.CurrentDomain.GetAssemblies()
+                    .Where((Assembly x) => 
+                        x.GetName().FullName != currentAssemblyFullName && 
+                        x.GetReferencedAssemblies().Any((AssemblyName y) => y.FullName == currentAssemblyFullName))
                     .ToList();
 
                 // All types in those libraries implementing ITestFrameworkAdapter
-                IList<Type> typesImplementingInterface = referencingLibraries
-                    .Select(library => Assembly.Load(new AssemblyName(library.Name)))
+                IList<Type> typesImplementingInterface = assembliesReferencingThisAssembly
                     .SelectMany(assembly => assembly.GetTypes().Where(x => x.GetInterfaces().Contains(typeof(ITestFrameworkAdapter))))
                     .ToList();
 
                 if (!typesImplementingInterface.Any())
-                    throw new InvalidOperationException("Unable to find a registered test adapter.  Did you forget to add a NuGet reference to Concise.Steps.MSTest or Concise.Steps.XUnit?");
+                    throw new InvalidOperationException("Unable to find a registered test adapter.  Did you forget to add a NuGet reference to Concise.Steps.MSTest or Concise.Steps.NUnit?");
 
                 if( typesImplementingInterface.Count > 1 )
                 {
@@ -56,23 +55,6 @@ namespace Concise.Steps.IoC
                 }
 
                 container.RegisterSingleton(typeof(ITestFrameworkAdapter), typesImplementingInterface.First());
-#else
-                // Until we switch over to .NET Standard 1.6, we are just going to directly require Concise.Steps.MSTest:
-
-                string msTestName = "Concise.Steps.MSTest";
-                Assembly msTestAssembly;
-                try
-                {
-                    msTestAssembly = Assembly.Load(new AssemblyName(msTestName));
-                }
-                catch(Exception ex)
-                {
-                    throw new InvalidOperationException("You must add a NuGet reference to Concise.Steps.MSTest", ex);
-                }
-
-                Type msTestAdapterType = msTestAssembly.GetTypes().Single(x => x.FullName == "Concise.Steps.MSTest.TestFramework.MSTestAdapter");
-                container.RegisterSingleton(typeof(ITestFrameworkAdapter), msTestAdapterType);
-#endif
             }
 
             Bootstrapper.Locator = container.Provider;

@@ -21,7 +21,8 @@ var artifactsDir = "./Artifacts";
 var buildDir = Directory(artifactsDir) + Directory(configuration);
 GitVersion gitVersion = null;
 
-DirectoryPath vsLatestPath = VSWhereLatest(new VSWhereLatestSettings { Requires = "Microsoft.VisualStudio.Workload.ManagedDesktop"});
+DirectoryPath vsLatestPath = VSWhereLegacy(new VSWhereLegacySettings { Version = "15.0"}).FirstOrDefault();
+		// VSWhereLatest(new VSWhereLatestSettings { Requires = "Microsoft.VisualStudio.Workload.ManagedDesktop"});
 Information("Using VS Path: " + vsLatestPath);
 
 FilePath msBuildPathX64 = (vsLatestPath==null)
@@ -30,8 +31,8 @@ FilePath msBuildPathX64 = (vsLatestPath==null)
 
 Information("MSBuild Path: " + msBuildPathX64);
 
-string semVer = "0.5.0";
-string netVer = "0.5.0.0";
+string semVer = "0.5.1";
+string netVer = "0.5.1.0";
 
 gitVersion = new GitVersion {
 	SemVer = semVer,
@@ -61,7 +62,7 @@ Task("GitVersion").Does(() => {
 	   UpdateAssemblyInfo = true
 	});
 
-    Information("GitResults -> {0}", gitVersion.Dump());
+    // Information("GitResults -> {0}", gitVersion.Dump());
 });
 
 Task("CreateSolutionInfo").Does(() => {
@@ -71,7 +72,7 @@ Task("CreateSolutionInfo").Does(() => {
 		Version = netVer,
 		FileVersion = netVer,
 	    InformationalVersion = semVer,
-		Copyright = "Copyright Todd Lindsey 2018"
+		Copyright = "Copyright Todd Lindsey 2019"
 	});
 
 });
@@ -101,7 +102,7 @@ Task("Tests")
 {
 	FilePath vsTestPath = vsLatestPath.CombineWithFilePath("./Common7/IDE/CommonExtensions/Microsoft/TestWindow/vstest.console.exe");
 
-	VSTest("./*.UnitTests.*/bin/" + configuration + "/*.UnitTests.dll", new VSTestSettings {
+	VSTest("./*.UnitTests.*/bin/" + configuration + "/*.UnitTests.*.dll", new VSTestSettings {
 		ToolPath = vsTestPath
 	});
 });
@@ -121,6 +122,15 @@ Task("Pack")
 			new NuSpecDependency { Id = "Concise.Steps", TargetFramework = "netstandard2.0", Version = "[" + gitVersion.NuGetVersionV2 + "]" }, // Require exact version match for now
 			new NuSpecDependency { Id = "MSTest.TestFramework", TargetFramework = "netstandard2.0", Version = "[1.1.18,)" },
 			new NuSpecDependency { Id = "MSTest.TestAdapter", TargetFramework = "netstandard2.0", Version = "[1.1.18,)" }
+		}
+    });
+
+    NuGetPack("./Concise.Steps.NUnit.nuspec", new NuGetPackSettings {
+		OutputDirectory = artifactsDir,
+		Version = gitVersion.NuGetVersionV2,
+		Dependencies = new [] { 
+			new NuSpecDependency { Id = "Concise.Steps", TargetFramework = "netstandard2.0", Version = "[" + gitVersion.NuGetVersionV2 + "]" }, // Require exact version match for now
+			new NuSpecDependency { Id = "NUnit", TargetFramework = "netstandard2.0", Version = "[3.11.0,)" }
 		}
     });
 });

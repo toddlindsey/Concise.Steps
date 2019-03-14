@@ -43,7 +43,6 @@ namespace Concise.Steps.MSTest.UnitTests
 
                 stackTrace.Should().Contain("-- Inner ArgumentException StackTrace --");
                 stackTrace.Should().Contain("-- Innerx2 ApplicationException StackTrace --");
-                stackTrace.Count(x => x == '\r').Should().Be(7, "7 lines in the stack trace output expected, as shown in test");
             });
         }
 

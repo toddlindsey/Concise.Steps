@@ -13,10 +13,10 @@
       A simple library for authoring self-describing, or BDD-Style tests
     </description>
     <language>en-US</language>
-    <licenseUrl>https://github.com/toddlindsey/Concise.Steps/blob/master/LICENSE</licenseUrl>
+    <license type="expression">Apache-2.0</license>
     <projectUrl>https://github.com/toddlindsey/Concise.Steps</projectUrl>
     <tags>MSTest MSTest2 tests testing bdd self-describing fluent</tags>
-    <copyright>Copyright Todd Lindsey 2017</copyright>
+    <copyright>Copyright Todd Lindsey 2019</copyright>
     <releaseNotes>
     </releaseNotes>    
     <!-- **ALL** DEPENDENCIES have to be specified in the CAKE file, since Concise.Steps needs a dynamic version restriction -->
