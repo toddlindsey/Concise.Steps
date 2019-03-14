@@ -2,6 +2,8 @@
 using FluentAssertions;
 using Concise.Steps;
 using NUnit.Framework;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Concise.Steps.NUnit.UnitTests
 {
@@ -35,6 +37,36 @@ namespace Concise.Steps.NUnit.UnitTests
             "Step 1"._(() => { });
             "Step 2"._(() => { });
             "Step 3"._(() => { });
+        }
+
+        [StepTest]
+        public async Task BasicStepTest_AsyncAwait()
+        {
+            await "Step 1"._Async(async () => {
+                await Task.CompletedTask;
+            });
+            await "Step 2"._Async(async () => {
+                await Task.CompletedTask;
+            });
+            await "Step 3"._Async(async () => {
+                await Task.CompletedTask;
+            });
+        }
+
+        [StepTest]
+        [Ignore("Run to test failing test")]
+        public async Task BasicStepTest_AsyncAwait_FailedOnStep()
+        {
+            await "Step 1"._Async(async () => {
+                await Task.CompletedTask;
+            });
+            await "Step 2"._Async(async () => {
+                true.Should().BeFalse("I say so");
+                await Task.CompletedTask;
+            });
+            await "Step 3"._Async(async () => {
+                await Task.CompletedTask;
+            });
         }
 
         [StepTest]

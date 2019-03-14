@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Concise.Steps.Execution
 {
@@ -9,10 +10,24 @@ namespace Concise.Steps.Execution
     /// </summary>
     public class TestStep
     {
+        /// <summary>
+        /// Non-async step constructor
+        /// </summary>
         public TestStep(string description, Action action, TimeSpan maxDuration, bool failFast = true) : this()
         {
             this.Description = description;
             this.Action = action;
+            this.MaxDuration = maxDuration;
+            this.FailFast = failFast;
+        }
+
+        /// <summary>
+        /// Async step constructor
+        /// </summary>
+        public TestStep(string description, Func<Task> actionAsync, TimeSpan maxDuration, bool failFast = true) : this()
+        {
+            this.Description = description;
+            this.ActionAsync = actionAsync;
             this.MaxDuration = maxDuration;
             this.FailFast = failFast;
         }
@@ -33,9 +48,14 @@ namespace Concise.Steps.Execution
         public string Description { get; private set; }
 
         /// <summary>
-        /// The action for this BDD step
+        /// The <see cref="Action"/> for this BDD step (if non-async)
         /// </summary>
         public Action Action { get; private set; }
+
+        /// <summary>
+        /// The <see cref="Func{Task}"/> for this BDD step (if async)
+        /// </summary>
+        public Func<Task> ActionAsync { get; private set; }
 
         /// <summary>
         /// True if a failure in this step should fail all topSteps.

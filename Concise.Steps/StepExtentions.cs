@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Concise.Steps
 {
@@ -25,6 +26,20 @@ namespace Concise.Steps
 
             var step = new TestStep(stepDescription, action, TimeSpan.MaxValue, true);
             TestStepContext.Current.Execute(step);
+        }
+
+        /// <summary>
+        /// Create a fail-fast step definition, meaning a failure in this step will immediately fail the entire test.
+        /// </summary>
+        /// <param name="stepDescription">The plain-english description of this step</param>
+        /// <param name="action">The action to perform</param>
+        public static async Task _Async(this string stepDescription, Func<Task> action)
+        {
+            if (TestStepContext.Current == null)
+                throw new InvalidOperationException(NoContextMessage);
+
+            var step = new TestStep(stepDescription, action, TimeSpan.MaxValue, true);
+            await TestStepContext.Current.ExecuteAsync(step);
         }
 
         /// <summary>

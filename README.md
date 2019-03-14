@@ -30,6 +30,7 @@ _Great for taming integration, endpoint/e2e tests or even unit tests_
                 ._(() => result.Value.Should().Be(3));
         }
 ```
+5. async/await is also supported with the _\"Step description\"\.\_Async()_ method
 
 #### Visual Studio Experience
 

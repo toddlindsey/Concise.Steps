@@ -9,6 +9,7 @@ using Concise.Steps.IoC;
 using Concise.Steps.Extensions;
 using System.Globalization;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Concise.Steps.Execution
 {
@@ -73,6 +74,9 @@ namespace Concise.Steps.Execution
         /// </summary>
         public void Execute(TestStep newStep)
         {
+            Guard.AgainstNull(newStep, nameof(newStep));
+            Guard.AgainstNull(newStep.Action, nameof(newStep.Action));
+
             newStep.Parent = this.CurrentStep;
 
             List<TestStep> stepList = newStep.Parent == null ? this.topSteps : newStep.Parent.Children;
@@ -107,6 +111,41 @@ namespace Concise.Steps.Execution
                 //    else
                 //        this.RenderStepResultsAndFail();
                 //}
+            }
+            finally
+            {
+                this.CurrentStep = newStep.Parent;
+            }
+        }
+
+        public async Task ExecuteAsync(TestStep newStep)
+        {
+            Guard.AgainstNull(newStep, nameof(newStep));
+            Guard.AgainstNull(newStep.ActionAsync, nameof(newStep.ActionAsync));
+
+            newStep.Parent = this.CurrentStep;
+
+            List<TestStep> stepList = newStep.Parent == null ? this.topSteps : newStep.Parent.Children;
+            lock (stepList)
+                stepList.Add(newStep);
+
+            TimeSpan duration = TimeSpan.Zero;
+            try
+            {
+                this.CurrentStep = newStep;
+                duration = await Collect.TimeOfAsync(newStep.ActionAsync);
+                newStep.Duration = duration;
+                newStep.FunctionalPassed = true;
+            }
+            catch (Exception ex)
+            {
+                newStep.FunctionalPassed = false;
+                newStep.Exception = ex;
+                newStep.Duration = duration;
+
+                // If in fail-fast, allow original exception to propogate, else we capture and swallow for now
+                if (newStep.FailFast)
+                    throw;
             }
             finally
             {

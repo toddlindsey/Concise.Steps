@@ -5,7 +5,7 @@ using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Commands;
 using System;
 
-namespace Concise.Steps.NUnit
+namespace Concise.Steps
 {
     public class StepTestAttribute : TestAttribute, IWrapTestMethod
     {

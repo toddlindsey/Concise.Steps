@@ -31,8 +31,8 @@ FilePath msBuildPathX64 = (vsLatestPath==null)
 
 Information("MSBuild Path: " + msBuildPathX64);
 
-string semVer = "0.5.1";
-string netVer = "0.5.1.0";
+string semVer = "0.5.2";
+string netVer = "0.5.2.0";
 
 gitVersion = new GitVersion {
 	SemVer = semVer,
@@ -144,6 +144,11 @@ Task("Push")
 	});  
 
     NuGetPush(artifactsDir + "/Concise.Steps.MSTest." + gitVersion.SemVer + ".nupkg", new NuGetPushSettings {
+		Source = "https://www.nuget.org/api/v2/package",
+		ApiKey = apiKey
+	});  
+
+    NuGetPush(artifactsDir + "/Concise.Steps.NUnit." + gitVersion.SemVer + ".nupkg", new NuGetPushSettings {
 		Source = "https://www.nuget.org/api/v2/package",
 		ApiKey = apiKey
 	});  

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Concise.Steps.Performance
 {
@@ -36,6 +37,25 @@ namespace Concise.Steps.Performance
                 duration = DateTime.Now - start;
             }
         }
-    }
 
+        /// <summary>
+        /// Collect the duration of the specified routine.
+        /// Any exception from the routine will propogate, but the duration will always be captured.
+        /// </summary>
+        public static async Task<TimeSpan> TimeOfAsync(Func<Task> action)
+        {
+            var start = DateTime.Now;
+            TimeSpan duration;
+            try
+            {
+                await action();
+            }
+            finally
+            {
+                duration = DateTime.Now - start;
+            }
+
+            return await Task.FromResult(duration);
+        }
+    }
 }
