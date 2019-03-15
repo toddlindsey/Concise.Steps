@@ -18,7 +18,6 @@ namespace Concise.Steps.NUnit.UnitTests
             ran.Should().BeTrue();
         }
 
-
         [StepTest]
         public void BasicStepTest_Step_IfFailsWithAnyException_WillPropogateThatException()
         {
@@ -42,13 +41,13 @@ namespace Concise.Steps.NUnit.UnitTests
         [StepTest]
         public async Task BasicStepTest_AsyncAwait()
         {
-            await "Step 1"._Async(async () => {
+            await "Step 1".__(async () => {
                 await Task.CompletedTask;
             });
-            await "Step 2"._Async(async () => {
+            await "Step 2".__(async () => {
                 await Task.CompletedTask;
             });
-            await "Step 3"._Async(async () => {
+            await "Step 3".__(async () => {
                 await Task.CompletedTask;
             });
         }
@@ -57,14 +56,14 @@ namespace Concise.Steps.NUnit.UnitTests
         [Ignore("Run to test failing test")]
         public async Task BasicStepTest_AsyncAwait_FailedOnStep()
         {
-            await "Step 1"._Async(async () => {
+            await "Step 1".__(async () => {
                 await Task.CompletedTask;
             });
-            await "Step 2"._Async(async () => {
+            await "Step 2".__(async () => {
                 true.Should().BeFalse("I say so");
                 await Task.CompletedTask;
             });
-            await "Step 3"._Async(async () => {
+            await "Step 3".__(async () => {
                 await Task.CompletedTask;
             });
         }

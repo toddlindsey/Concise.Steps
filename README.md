@@ -17,20 +17,19 @@ _Great for taming integration, endpoint/e2e tests or even unit tests_
 
 ```C#
         [StepTest]
-        public void ObjectUnderTest_Add_GivenTwoNumbers_AddsCorrectly()
+        public async Task ObjectUnderTest_Add_GivenTwoNumbers_AddsCorrectly()
         {
             int a = 1, b = 2;
             $"Given numbers {a} and {b}"._();
 
             int? result = null;
-            "When Add(a,b) is called"
-                ._(() => result = this.testObject.Add(a, b));
+            await "When Add(a,b) is called"
+                .__(async () => result = await this.testObject.Add(a, b));
 
             "Expect 3"
                 ._(() => result.Value.Should().Be(3));
         }
 ```
-5. async/await is also supported with the _\"Step description\"\.\_Async()_ method
 
 #### Visual Studio Experience
 

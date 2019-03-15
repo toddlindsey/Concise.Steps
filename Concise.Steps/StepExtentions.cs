@@ -33,7 +33,7 @@ namespace Concise.Steps
         /// </summary>
         /// <param name="stepDescription">The plain-english description of this step</param>
         /// <param name="action">The action to perform</param>
-        public static async Task _Async(this string stepDescription, Func<Task> action)
+        public static async Task __(this string stepDescription, Func<Task> action)
         {
             if (TestStepContext.Current == null)
                 throw new InvalidOperationException(NoContextMessage);
