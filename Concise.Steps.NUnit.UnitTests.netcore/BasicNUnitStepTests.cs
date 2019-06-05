@@ -102,6 +102,28 @@ namespace Concise.Steps.NUnit.UnitTests
 
         [StepTest]
         [Ignore("Run to test failing test")]
+        public async Task BasicStepTest_ExceptionBeforeFirstStep()
+        {
+            true.Should().BeFalse();
+
+            await "Step 1".__(async () => {
+                await Task.CompletedTask;
+            });
+        }
+
+        [StepTest]
+        [Ignore("Run to test failing test")]
+        public async Task BasicStepTest_ExceptionAfterFirstStep()
+        {
+            await "Step 1".__(async () => {
+                await Task.CompletedTask;
+            });
+
+            true.Should().BeFalse();
+        }
+
+        [StepTest]
+        [Ignore("Run to test failing test")]
         public void BasicStepTest_ExceptionOnStep()
         {
             "Step 1"._(() => { });

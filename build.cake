@@ -31,8 +31,8 @@ FilePath msBuildPathX64 = (vsLatestPath==null)
 
 Information("MSBuild Path: " + msBuildPathX64);
 
-string semVer = "0.5.3";
-string netVer = "0.5.3.0";
+string semVer = "0.5.4";
+string netVer = "0.5.4.0";
 
 gitVersion = new GitVersion {
 	SemVer = semVer,

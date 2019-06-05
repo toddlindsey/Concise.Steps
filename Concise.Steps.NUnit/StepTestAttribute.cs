@@ -37,14 +37,25 @@ namespace Concise.Steps
                         ResultState state = (ex as ResultStateException)?.ResultState ?? ResultState.Failure;
 
                         string stackTrace = null;
+                        string message = stepContext.RenderStepResults();
                         if (state == ResultState.Failure)
                         {
                             Exception failedStepException = stepContext.FirstFunctionalFailStepOrNull()?.Exception;
                             if (failedStepException != null)
+                            {
                                 stackTrace = ExceptionHelper.BuildStackTrace(failedStepException);
+                            }
+                            else // It appears an exception was thrown outside of a step
+                            {
+                                stackTrace = ExceptionHelper.BuildStackTrace(ex);
+                                message += "FAIL> (outside of test steps)";
+                                message += Environment.NewLine;
+                                message += Environment.NewLine;
+                                message += ex.Message;
+                            }
                         }
 
-                        context.CurrentResult.SetResult(state, stepContext.RenderStepResults(), stackTrace);
+                        context.CurrentResult.SetResult(state, message, stackTrace);
                     }
                 }
 

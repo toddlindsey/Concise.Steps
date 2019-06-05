@@ -8,7 +8,7 @@ namespace Concise.Steps.Extensions
     /// <summary>
     /// Extension methods for strings
     /// </summary>
-    public static class StringExtensions
+    internal static class StringExtensions
     {
         /// <summary>
         /// Returns true if the string is non-null and non-empty

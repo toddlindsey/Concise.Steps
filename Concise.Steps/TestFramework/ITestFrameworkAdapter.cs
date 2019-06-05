@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Concise.Steps.TestFramework
 {
-    public interface ITestFrameworkAdapter
+    internal interface ITestFrameworkAdapter
     {
         bool IsAssertionException(Exception ex);
 

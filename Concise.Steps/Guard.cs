@@ -10,7 +10,7 @@ namespace Concise.Steps
     /// Static methods to assist with argument precondition testing
     /// </summary>
     [DebuggerStepThrough]
-    public static class Guard
+    internal static class Guard
     {
         /// <summary>
         /// Method to protect against null argument values by throwing an <see cref="ArgumentNullException"/>.

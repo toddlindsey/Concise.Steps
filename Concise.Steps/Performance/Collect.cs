@@ -8,7 +8,7 @@ namespace Concise.Steps.Performance
     /// <summary>
     /// Helper methods to collect data about a passed-in routine
     /// </summary>
-    public static class Collect
+    internal static class Collect
     {
         /// <summary>
         /// Collect the duration of the specified routine.
