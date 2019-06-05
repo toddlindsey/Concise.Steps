@@ -3,6 +3,9 @@
 #tool "nuget:?package=GitVersion.CommandLine"
 // NOTE If you want to allow running powershell scripts with arguments without first invoking powershell.exe, read: https://www.howtogeek.com/204166/how-to-configure-windows-to-work-with-powershell-scripts-more-easily/
 
+// Usage:  build.cmd (Will build, test and pack)
+// Usage:  build.cmd -target Push --apiKey==XYZ (push to nuget)
+
 // Details on VSWHERE: http://cakebuild.net/blog/2017/03/vswhere-and-visual-studio-2017-support
 
 //////////////////////////////////////////////////////////////////////
@@ -21,13 +24,12 @@ var artifactsDir = "./Artifacts";
 var buildDir = Directory(artifactsDir) + Directory(configuration);
 GitVersion gitVersion = null;
 
-DirectoryPath vsLatestPath = VSWhereLegacy(new VSWhereLegacySettings { Version = "15.0"}).FirstOrDefault();
-		// VSWhereLatest(new VSWhereLatestSettings { Requires = "Microsoft.VisualStudio.Workload.ManagedDesktop"});
+DirectoryPath vsLatestPath = VSWhereLatest();
 Information("Using VS Path: " + vsLatestPath);
 
 FilePath msBuildPathX64 = (vsLatestPath==null)
                             ? null
-                            : vsLatestPath.CombineWithFilePath("./MSBuild/15.0/Bin/amd64/MSBuild.exe");
+                            : vsLatestPath.CombineWithFilePath("./MSBuild/Current/Bin/amd64/MSBuild.exe");
 
 Information("MSBuild Path: " + msBuildPathX64);
 
@@ -90,7 +92,6 @@ Task("BuildSolution")
     .Does(() =>
 {
     MSBuild("./Concise.Steps.sln", settings => {
-		//settings.ToolVersion = MSBuildToolVersion.VS2017;
 		settings.ToolPath = msBuildPathX64;
 		settings.PlatformTarget = PlatformTarget.MSIL;
 		settings.SetConfiguration(configuration);
