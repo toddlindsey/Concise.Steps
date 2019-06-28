@@ -21,16 +21,16 @@ namespace Concise.Steps.Execution
     internal class TestStepContext : IDisposable
     {
         private List<TestStep> topSteps = new List<TestStep>();
-        //private bool stepResultsReported = false;
 
         /// <summary>
         /// Contains the current step context on the call context
         /// </summary>
         private static AsyncLocal<TestStepContext> CurrentStepContextLocal = new AsyncLocal<TestStepContext>();
 
+        private TestContextOptions options;
         private ITestFrameworkAdapter adapter;
 
-        private TestStepContext()
+        private TestStepContext(TestContextOptions options = null)
         {
             if (TestStepContext.Current != null)
             {
@@ -40,13 +40,13 @@ namespace Concise.Steps.Execution
             }
 
             TestStepContext.Current = this;
-            //this.PerformanceFailAction = StepPerformanceFailureAction.FailTest;
+            this.options = options ?? new TestContextOptions();
             this.adapter = (ITestFrameworkAdapter)Bootstrapper.Locator.GetService(typeof(ITestFrameworkAdapter));
         }
 
-        public static TestStepContext CreateNew()
+        public static TestStepContext CreateNew(TestContextOptions options = null)
         {
-            return new TestStepContext();
+            return new TestStepContext(options);
         }
 
         /// <summary>
@@ -88,6 +88,7 @@ namespace Concise.Steps.Execution
             {
                 this.CurrentStep = newStep;
                 Collect.TimeOf(newStep.Action, out duration);
+                newStep.CompletedTime = DateTimeOffset.Now;
                 newStep.Duration = duration;
                 newStep.FunctionalPassed = true;
             }
@@ -134,6 +135,7 @@ namespace Concise.Steps.Execution
             {
                 this.CurrentStep = newStep;
                 duration = await Collect.TimeOfAsync(newStep.ActionAsync);
+                newStep.CompletedTime = DateTimeOffset.Now;
                 newStep.Duration = duration;
                 newStep.FunctionalPassed = true;
             }
@@ -247,12 +249,15 @@ namespace Concise.Steps.Execution
         /// <param name="level">The current step level (starting with 0, incrementing for recursive calls)</param>
         private void RenderStepResultsAtLevel(StringBuilder builder, IEnumerable<TestStep> steps, int level, bool renderCallstacks)
         {
-            foreach (var step in steps)
+            foreach (TestStep step in steps)
             {
                 builder.AppendLine(
                     (step.FunctionalPassed ? (step.PerformancePassed ? "PASS" : "TOO LONG") : "FAIL") + ">  ".Repeat(level + 1) +
                     step.Description +
-                    $" ({step.Duration.TotalSeconds.ToString("F3", CultureInfo.InvariantCulture)}s)");
+                    $" ({step.Duration.TotalSeconds.ToString("F3", CultureInfo.InvariantCulture)}s)" +
+                    (options.ShowDoneTimestamps == true ?
+                        $" at {step.CompletedTime.ToString(options.TimeFormatString)}": 
+                        string.Empty));
 
                 // If there is an exception that isn't already reported by a child step, report it
                 if (step.Exception != null && !step.Children.Any(child => child.Exception == step.Exception))

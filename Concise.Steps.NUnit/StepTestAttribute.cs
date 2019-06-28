@@ -9,20 +9,45 @@ namespace Concise.Steps
 {
     public class StepTestAttribute : TestAttribute, IWrapTestMethod
     {
+        public StepTestAttribute() { }
+
+        /// <summary>
+        /// True to include step completed timestamps in each step message
+        /// </summary>
+        public bool DoneTimestamps { get; set; }
+
+        /// <summary>
+        /// Specify to override the default time format string used if <see cref="DoneTimestamps"/> is true.
+        /// (See <see cref="DateTimeOffset.ToString(String)"/> for format strings)
+        /// </summary>
+        public string TimeFormatString { get; set; }
+
         public TestCommand Wrap(TestCommand command)
         {
-            return new StepTestCommand(command);
+            return new StepTestCommand(command, this);
         }
 
         private class StepTestCommand : DelegatingTestCommand
         {
-            public StepTestCommand(TestCommand innerCommand) : base(innerCommand)
+            private StepTestAttribute attribute;
+
+            public StepTestCommand(TestCommand innerCommand, StepTestAttribute attribute) : base(innerCommand)
             {
+                Guard.AgainstNull(attribute, nameof(attribute));
+                this.attribute = attribute;
             }
 
             public override TestResult Execute(TestExecutionContext context)
             {
-                using (var stepContext = TestStepContext.CreateNew())
+                var contextOptions = new TestContextOptions
+                {
+                    ShowDoneTimestamps = this.attribute.DoneTimestamps,
+                };
+
+                if (!string.IsNullOrEmpty(this.attribute.TimeFormatString))
+                    contextOptions.TimeFormatString = this.attribute.TimeFormatString;
+
+                using (var stepContext = Execution.TestStepContext.CreateNew(contextOptions))
                 {
                     try
                     {

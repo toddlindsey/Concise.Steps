@@ -6,8 +6,8 @@
 using System.Reflection;
 
 [assembly: AssemblyProduct("Concise.Steps")]
-[assembly: AssemblyVersion("0.5.3.0")]
-[assembly: AssemblyFileVersion("0.5.3.0")]
-[assembly: AssemblyInformationalVersion("0.5.3")]
+[assembly: AssemblyVersion("0.5.5.0")]
+[assembly: AssemblyFileVersion("0.5.5.0")]
+[assembly: AssemblyInformationalVersion("0.5.5")]
 [assembly: AssemblyCopyright("Copyright Todd Lindsey 2019")]
 

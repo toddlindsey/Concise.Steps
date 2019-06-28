@@ -8,14 +8,32 @@ using System.Text;
 
 namespace Concise.Steps
 {
-
-
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class StepTestAttribute : TestMethodAttribute
     {
+        /// <summary>
+        /// True to include step completed timestamps in each step message
+        /// </summary>
+        public bool DoneTimestamps { get; set; }
+
+        /// <summary>
+        /// Specify to override the default time format string used if <see cref="ShowTimestamps"/> is true.
+        /// (See <see cref="DateTimeOffset.ToString(String)"/> for format strings)
+        /// </summary>
+        public string TimeFormatString { get; set; }
+
+
         public override TestResult[] Execute(ITestMethod testMethod)
         {
-            using (var stepContext = TestStepContext.CreateNew())
+            var contextOptions = new TestContextOptions
+            {
+                ShowDoneTimestamps = this.DoneTimestamps
+            };
+
+            if (!string.IsNullOrEmpty(this.TimeFormatString))
+                contextOptions.TimeFormatString = this.TimeFormatString;
+
+            using (var stepContext = Execution.TestStepContext.CreateNew(contextOptions))
             {
                 if (testMethod.GetAttributes<DataRowAttribute>(false).Any())
                     throw new NotSupportedException("[Test] methods do not currently support the use of the [DataRow] attribute.");

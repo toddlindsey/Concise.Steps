@@ -80,6 +80,11 @@ namespace Concise.Steps.Execution
         }
 
         /// <summary>
+        /// Exact time this step completed
+        /// </summary>
+        public DateTimeOffset CompletedTime { get; set; }
+
+        /// <summary>
         /// The duration of the step, once completed
         /// </summary>
         public TimeSpan Duration { get; internal set; }

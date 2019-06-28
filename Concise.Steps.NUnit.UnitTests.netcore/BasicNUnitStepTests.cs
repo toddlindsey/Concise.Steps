@@ -30,7 +30,7 @@ namespace Concise.Steps.NUnit.UnitTests
                 .And.Message.Should().Be("My Exception");
         }
 
-        [StepTest]
+        [StepTest(DoneTimestamps = true, TimeFormatString = "MM/dd/yyyy HH:mm:ss.ffff")]
         public void BasicStepTest_ThreeSteps()
         {
             "Step 1"._(() => { });
@@ -38,7 +38,7 @@ namespace Concise.Steps.NUnit.UnitTests
             "Step 3"._(() => { });
         }
 
-        [StepTest]
+        [StepTest(DoneTimestamps = true)]
         public async Task BasicStepTest_AsyncAwait()
         {
             await "Step 1".__(async () => {
@@ -52,7 +52,7 @@ namespace Concise.Steps.NUnit.UnitTests
             });
         }
 
-        [StepTest]
+        [StepTest(DoneTimestamps = true)]
         [Ignore("Run to test failing test")]
         public async Task BasicStepTest_AsyncAwait_FailedOnStep()
         {

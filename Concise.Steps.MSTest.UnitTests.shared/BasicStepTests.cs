@@ -8,7 +8,7 @@ namespace Concise.Steps.MSTest.UnitTests
     [TestClass]
     public class BasicStepTests
     {
-        [StepTest]
+        [StepTest(DoneTimestamps = true, TimeFormatString = "MM/dd/yyyy HH:mm:ss.ffff")]
         public void BasicStepTest_Step_WillAlways_ExecuteImmediately()
         {
             bool ran = false;
