@@ -94,6 +94,7 @@ namespace Concise.Steps.Execution
             }
             catch (Exception ex)
             {
+                newStep.CompletedTime = DateTimeOffset.Now;
                 newStep.FunctionalPassed = false;
                 newStep.Exception = ex;
                 newStep.Duration = duration;
@@ -141,6 +142,7 @@ namespace Concise.Steps.Execution
             }
             catch (Exception ex)
             {
+                newStep.CompletedTime = DateTimeOffset.Now;
                 newStep.FunctionalPassed = false;
                 newStep.Exception = ex;
                 newStep.Duration = duration;
