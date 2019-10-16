@@ -52,7 +52,10 @@ namespace Concise.Steps
                     try
                     {
                         innerCommand.Execute(context);
-                        context.CurrentResult.SetResult(context.CurrentResult.ResultState, stepContext.RenderStepResults());
+
+                        string stepResults = stepContext.RenderStepResults();
+                        TestContext.Out.WriteLine(stepResults);
+                        context.CurrentResult.SetResult(context.CurrentResult.ResultState, stepResults);
                     }
                     catch (Exception ex)
                     {
@@ -62,7 +65,7 @@ namespace Concise.Steps
                         ResultState state = (ex as ResultStateException)?.ResultState ?? ResultState.Failure;
 
                         string stackTrace = null;
-                        string message = stepContext.RenderStepResults();
+                        string stepResults = stepContext.RenderStepResults();
                         if (state == ResultState.Failure)
                         {
                             Exception failedStepException = stepContext.FirstFunctionalFailStepOrNull()?.Exception;
@@ -73,14 +76,15 @@ namespace Concise.Steps
                             else // It appears an exception was thrown outside of a step
                             {
                                 stackTrace = ExceptionHelper.BuildStackTrace(ex);
-                                message += "FAIL> (outside of test steps)";
-                                message += Environment.NewLine;
-                                message += Environment.NewLine;
-                                message += ex.Message;
+                                stepResults += "FAIL> (outside of test steps)";
+                                stepResults += Environment.NewLine;
+                                stepResults += Environment.NewLine;
+                                stepResults += ex.Message;
                             }
                         }
 
-                        context.CurrentResult.SetResult(state, message, stackTrace);
+                        TestContext.Out.WriteLine(stepResults);
+                        context.CurrentResult.SetResult(state, stepResults, stackTrace);
                     }
                 }
 

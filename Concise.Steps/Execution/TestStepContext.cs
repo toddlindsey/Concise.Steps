@@ -238,7 +238,6 @@ namespace Concise.Steps.Execution
         {
             var builder = new StringBuilder();
             builder.AppendLine();
-            builder.AppendLine();
             this.RenderStepResultsAtLevel(builder, this.topSteps, 0, renderCallstacks);
             return builder.ToString();
         }

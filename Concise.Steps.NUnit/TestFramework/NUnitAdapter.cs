@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Concise.Steps;
 using Concise.Steps.TestFramework;
@@ -9,6 +10,8 @@ namespace Concise.Steps.NUnit.TestFramework
 {
     public class NUnitAdapter : ITestFrameworkAdapter
     {
+        public TextWriter OutputWriter => TestContext.Out;
+
         public bool IsAssertionException(Exception ex)
         {
             return ex is AssertionException;

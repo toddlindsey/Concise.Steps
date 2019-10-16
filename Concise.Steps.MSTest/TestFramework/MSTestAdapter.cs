@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Text;
 using Concise.Steps;
 using Concise.Steps.TestFramework;
+using System.IO;
 
 namespace Concise.Steps.MSTest.TestFramework
 {
     public class MSTestAdapter : ITestFrameworkAdapter
     {
+        public TextWriter OutputWriter => Console.Out;
+
         public bool IsAssertionException(Exception ex)
         {
             return ex is UnitTestAssertException;

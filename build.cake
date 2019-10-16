@@ -4,7 +4,7 @@
 // NOTE If you want to allow running powershell scripts with arguments without first invoking powershell.exe, read: https://www.howtogeek.com/204166/how-to-configure-windows-to-work-with-powershell-scripts-more-easily/
 
 // Usage:  build.cmd (Will build, test and pack)
-// Usage:  build.cmd -target Push --apiKey==XYZ (push to nuget)
+// Usage:  build.cmd -target Push --apiKey=XYZ (push to nuget)
 
 // Details on VSWHERE: http://cakebuild.net/blog/2017/03/vswhere-and-visual-studio-2017-support
 
@@ -33,8 +33,8 @@ FilePath msBuildPathX64 = (vsLatestPath==null)
 
 Information("MSBuild Path: " + msBuildPathX64);
 
-string semVer = "0.5.6";
-string netVer = "0.5.6.0";
+string semVer = "0.5.7";
+string netVer = "0.5.7.0";
 
 gitVersion = new GitVersion {
 	SemVer = semVer,

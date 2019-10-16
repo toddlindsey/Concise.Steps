@@ -40,13 +40,16 @@ namespace Concise.Steps
 
                 TestResult result = testMethod.Invoke(null);
 
+                string stepResults = stepContext.RenderStepResults();
+                Console.WriteLine(stepResults);
+
                 if (result.Outcome == UnitTestOutcome.Failed)
                 {
                     TestStep functionalFailStep = stepContext.FirstFunctionalFailStepOrNull();
                     if (functionalFailStep != null)
                     {
                         // Provide a "fake" exception so the step output is clearly visible in the primary results window
-                        result.TestFailureException = new StepTestWrapperException(stepContext.RenderStepResults(), functionalFailStep.Exception);
+                        result.TestFailureException = new StepTestWrapperException(stepResults, functionalFailStep.Exception);
                         //result.DebugTrace = functionalFailStep.Exception.StackTrace;
                     }
                 }
@@ -55,7 +58,7 @@ namespace Concise.Steps
                     if (stepContext.HasPerformanceFailure())
                     {
                         // Provide a "fake" exception so the step output is clearly visible in the primary results window
-                        result.TestFailureException = new AssertFailedException(stepContext.RenderStepResults());
+                        result.TestFailureException = new AssertFailedException(stepResults);
                         result.DebugTrace = null;
                         result.Outcome = UnitTestOutcome.Failed;
                     }
@@ -64,7 +67,7 @@ namespace Concise.Steps
                         // Yes this is odd to register an exception for a Passed test, but it seems the only
                         // way to show test results directly as the primary message, which is a much better experience
                         // than having to click again into a separate "Output" window.
-                        result.TestFailureException = new AssertFailedException(stepContext.RenderStepResults());
+                        result.TestFailureException = new AssertFailedException(stepResults);
                     }
                 }
 
